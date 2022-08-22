@@ -3,7 +3,7 @@ const github = require('@actions/github');
 
 try {
   const githubRef = process.env.GITHUB_REF_NAME
-  console.log(`Github Ref: ${githubRef}`)
+  console.log(`Github Ref: ${githubRef}, ${GITHUB_HEAD_REF}`)
   const previewEnvName = githubRef.replace(/[^A-Za-z0-9]/g, '-')
   console.log(`Preview Env Name ${previewEnvName}!`);
 
