@@ -1,10 +1,5 @@
 name: 'deploytag'
 description: 'Get a Preview Environment Name from Github Ref'
-inputs:
-  github-ref:
-    description: 'The Github Ref'
-    required: true
-    default: ''
 outputs:
   preview-env-name:
     description: 'The name of your preview environment'
