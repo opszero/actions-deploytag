@@ -2,7 +2,9 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
-  const previewEnvName = process.env.GITHUB_REF_NAME.replace(/[^A-Za-z0-9]/g, '-')
+  const githubRef = process.env.GITHUB_REF_NAME
+  console.log(`Github Ref: ${githubRef}`)
+  const previewEnvName = githubRef.replace(/[^A-Za-z0-9]/g, '-')
   console.log(`Preview Env Name ${previewEnvName}!`);
 
   const isPreview = !!githubRef.match(/^(bug|epic|feature_deploy)/)
