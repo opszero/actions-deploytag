@@ -2,8 +2,8 @@ const core = require('@actions/core');
 const github = require('@actions/github');
 
 try {
-  const githubRef = process.env.GITHUB_REF_NAME
-  console.log(`Github Ref: ${githubRef}, ${process.env.GITHUB_HEAD_REF}`)
+  const githubRef = process.env.GITHUB_HEAD_REF
+  console.log(`Github Ref: ${githubRef}`)
   const previewEnvName = githubRef.replace(/[^A-Za-z0-9]/g, '-')
   console.log(`Preview Env Name ${previewEnvName}!`);
 
