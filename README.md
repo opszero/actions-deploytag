@@ -1,4 +1,4 @@
-# DeployTag
+# actions-deploytag
 
 Deploy Feature Environments to Kubernetes using Github Actions
 
