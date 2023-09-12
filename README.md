@@ -1,4 +1,4 @@
-# DeployTag
+# actions-deploytag
 
 Deploy Feature Environments to Kubernetes using Github Actions
 
@@ -165,26 +165,4 @@ jobs:
         --set ingress.host=www.opszero.com
 
 
-```
-
-### Clean Up Feature Branches
-
-```
-# Prune Environments in Helm Scaffold
-
-```python
-#!/usr/bin/env python3
-
-import subprocess
-
-subprocess.getoutput("git remote update")
-
-deployed_branches = subprocess.getoutput("helm list -a -A 2>&1 | grep feature-deploy | awk '{print $2}'").split("\n")
-active_branches = subprocess.getoutput("git branch -r | grep feature_deploy | sed -e 's|^  origin/||g' | sed -e 's/[^A-Za-z0-9]/-/g'").split("\n")
-
-for branch in deployed_branches:
-    if branch not in active_branches:
-        subprocess.run(f"KUBECONFIG=./kubeconfig helm delete --wait -n {branch} perfectrecall", shell=True)
-        subprocess.run(f"KUBECONFIG=./kubeconfig kubectl delete namespace -n {branch}", shell=True)
-```
 ```
