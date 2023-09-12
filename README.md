@@ -32,6 +32,9 @@ jobs:
   deploy:
     name: Test, Build, Deploy
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
 
     services:
       postgres:
@@ -63,7 +66,7 @@ jobs:
         github-ref: ${{ github.ref }}
 
     - name: Checkout
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
 
     - name: Install Python
       uses: actions/setup-python@v2
@@ -92,8 +95,7 @@ jobs:
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v1
       with:
-        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        role-to-assume: arn:aws:iam::123456123123:role/github-deployer
         aws-region: us-west-2
 
     - name: Login to Amazon ECR
